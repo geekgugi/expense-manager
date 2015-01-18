@@ -2,6 +2,7 @@
 
 angular.module('expensesManagerApp')
 .controller('MainCtrl', function ($scope, $http, ngDialog) {
+  $scope.value;
   $scope.expenses = [];
   $scope.form = {
     "name" : "",
@@ -53,8 +54,7 @@ angular.module('expensesManagerApp')
 
   $scope.addExpense = function (form) {
     var value;
-    angular.copy(value,form)
-    console.log(value);
+    angular.copy(form, value);
     $scope.expenses.push(value);
   }
 });

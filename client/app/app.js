@@ -6,7 +6,8 @@ angular.module('expensesManagerApp', [
   'ngSanitize',
   'ngRoute',
   'ngDialog',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'keypressClick'
 ])
 .config(function ($routeProvider, $locationProvider, ngDialogProvider) {
 

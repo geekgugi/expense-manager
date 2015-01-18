@@ -36,7 +36,12 @@ angular.module('expensesManagerApp')
     });
   };
 
-  $scope.addFriend = function () {
+  $scope.addFriend = function (event) {
+    console.log("Method invoked");
+    if (event.which === 13) {
+      console.log("Invoked via enter button");
+    }
+
     console.log("Adding new friend");
     var friend = {
       "id":$scope.friends[$scope.friends.length - 1].id + 1,
@@ -46,7 +51,10 @@ angular.module('expensesManagerApp')
     $scope.friends.push(friend);
   }
 
-  $scope.addExpense = function () {
-    $scope.expenses.push(form);
+  $scope.addExpense = function (form) {
+    var value;
+    angular.copy(value,form)
+    console.log(value);
+    $scope.expenses.push(value);
   }
 });

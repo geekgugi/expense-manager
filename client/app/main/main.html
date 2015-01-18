@@ -10,7 +10,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container" ng-controller="MainCtrl">
-  <form  name="eForm"  class="form" ng-submit="addExpense()" novalidate>
+  <form  name="eForm"  class="form" ng-submit="addExpense(form)" novalidate>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Type</label>
@@ -79,10 +79,31 @@
         ng-disabled="eForm.expense.$dirty && eForm.expense.$invalid" />
       </div>
       <div class="form-group col-md-6">
-        <input type="button" ng-click="openDialog()" value="Add a friend"/>
+        <input type="button" ng-keyup="openDialog($event)" ng-click="openDialog()" value="Add a friend"/>
+        <input type="hidden" ng-keyup="openDialog($event)" tabindex="1" autofocus="autofocus" />
       </div>
     </div>
   </form>
+
+  <div ng-repeat="expense in expenses">
+    <div class="row">
+      <div class="col-md-2">
+        {{expense.selectedPaymentType.type}}
+        </div>
+      <div class="col-md-2">
+        {{expense.name}}
+        </div>
+      <div class="col-md-2">
+        {{expense.selectedFriend.name}}
+        </div>
+      <div class="col-md-2">
+        {{expense.selectedCurrency.value}}
+        </div>
+      <div class="col-md-2">
+        {{expense.amount}}
+        </div>
+    </div>
+  </div>
 </div>
 
 <footer class="footer">

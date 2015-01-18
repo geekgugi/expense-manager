@@ -1,0 +1,95 @@
+<script type="text/ng-template" id="friendTemplate">
+<h1>Add a friend</h1>
+
+ <form ng-controller="MainCtrl" ng-submit="addFriend()">
+     <input ng-model="newFriend" type="text" placeholder="Friend name"/>
+     <input type="submit" value="Add"/>
+ </form>
+</script>
+
+
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container" ng-controller="MainCtrl">
+  <form  name="eForm"  class="form" ng-submit="addExpense(form)" novalidate>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Type</label>
+      </div>
+
+      <div class="form-group col-md-3">
+        <select ng-init="selectedPaymentType=paymentTypes[0]" 
+          ng-model="selectedPaymentType" ng-options="paymentType.type for paymentType in paymentTypes">
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label>Friend</label>
+      </div>
+      <div class="form-group col-md-3">
+        <select ng-init="selectedFriend=friends[0]" 
+          ng-model="selectedFriend" ng-options="selectedFriend as friend.name for friend in friends">
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Currency</label>
+      </div>
+      <div class="form-group col-md-3">
+        <select ng-init="selectedCurrency=currencies[0]" 
+          ng-model="selectedCurrency" ng-options="currency.value for currency in currencies">
+        </select>
+      </div>
+      <div class="form-group col-md-3"> 
+        <label>Number</label>
+      </div>
+      <div class="form-group col-md-3"> 
+        <input type="number" name="amount" ng-model="amount" required>
+        <span ng-show="eForm.amount.$dirty && eForm.amount.$invalid">
+          <span class="error-msg" ng-show="eForm.amount.$error.required">Amount is required.</span>
+          <span class="error-msg" ng-show="eForm.amount.$error.number">Invalid amount.</span>
+        </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Name</label>
+      </div>
+      <div class="form-group col-md-3"> 
+        <input type="text"/>
+      </div>
+      <div class="form-group col-md-3"> 
+        <label>Date</label>
+      </div>
+      <div class="form-group col-md-3"> 
+        <input type="date"  name="date" ng-model="tDate"
+        placeholder="yyyy-mm-dd" min="2013-01-01" required />
+        <span ng-show="eForm.date.$dirty && eForm.date.$invalid">
+          <span class="error-msg" ng-show="eForm.date.$error.required">Required!</span>
+          <span class="error-msg" ng-show="eForm.date.$error.date">Not a valid date!</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <input type="submit" ng-click="addExpense(expense)" value="Add an expense"
+        ng-disabled="eForm.expense.$dirty && eForm.expense.$invalid" />
+      </div>
+      <div class="form-group col-md-6">
+        <input type="button" ng-click="openDialog()" value="Add a friend"/>
+      </div>
+    </div>
+  </form>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>Copyrights Reserved |
+    <a href="https://twitter.com/geekgugi">@geekgugi</a> |
+    <a href="https://github.com/geekgugi/expenses-manager/issues?state=open">Issues</a></p>
+  </div>
+</footer>

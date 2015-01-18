@@ -1,0 +1,2 @@
+# expense-manager
+For playing

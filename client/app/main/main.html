@@ -7,28 +7,26 @@
  </form>
 </script>
 
-
-
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container" ng-controller="MainCtrl">
-  <form  name="eForm"  class="form" ng-submit="addExpense(form)" novalidate>
+  <form  name="eForm"  class="form" ng-submit="addExpense()" novalidate>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Type</label>
       </div>
 
       <div class="form-group col-md-3">
-        <select ng-init="selectedPaymentType=paymentTypes[0]" 
-          ng-model="selectedPaymentType" ng-options="paymentType.type for paymentType in paymentTypes">
+        <select ng-init="form.selectedPaymentType=paymentTypes[0]" 
+          ng-model="form.selectedPaymentType" ng-options="paymentType.type for paymentType in paymentTypes">
         </select>
       </div>
       <div class="form-group col-md-3">
         <label>Friend</label>
       </div>
       <div class="form-group col-md-3">
-        <select ng-init="selectedFriend=friends[0]" 
-          ng-model="selectedFriend" ng-options="selectedFriend as friend.name for friend in friends">
+        <select ng-init="form.selectedFriend=friends[0]" 
+          ng-model="form.selectedFriend" ng-options="friend.name for friend in friends">
         </select>
       </div>
     </div>
@@ -37,18 +35,19 @@
         <label>Currency</label>
       </div>
       <div class="form-group col-md-3">
-        <select ng-init="selectedCurrency=currencies[0]" 
-          ng-model="selectedCurrency" ng-options="currency.value for currency in currencies">
+        <select ng-init="form.selectedCurrency=currencies[0]" 
+          ng-model="form.selectedCurrency" ng-options="currency.value for currency in currencies">
         </select>
       </div>
       <div class="form-group col-md-3"> 
         <label>Number</label>
       </div>
       <div class="form-group col-md-3"> 
-        <input type="number" name="amount" ng-model="amount" required>
+        <input type="number" name="form.amount" ng-model="form.amount" ng-pattern="/^(0|[1-9][0-9]*)$/"  required>
         <span ng-show="eForm.amount.$dirty && eForm.amount.$invalid">
           <span class="error-msg" ng-show="eForm.amount.$error.required">Amount is required.</span>
           <span class="error-msg" ng-show="eForm.amount.$error.number">Invalid amount.</span>
+          <span class="error-msg" ng-show="eForm.amount.$error.pattern">No negative amount.</span>
         </span>
         </p>
       </div>
@@ -59,13 +58,13 @@
         <label>Name</label>
       </div>
       <div class="form-group col-md-3"> 
-        <input type="text"/>
+        <input type="text" ng-model="form.name"/>
       </div>
       <div class="form-group col-md-3"> 
         <label>Date</label>
       </div>
       <div class="form-group col-md-3"> 
-        <input type="date"  name="date" ng-model="tDate"
+        <input type="date"  name="date" ng-model="form.tDate"
         placeholder="yyyy-mm-dd" min="2013-01-01" required />
         <span ng-show="eForm.date.$dirty && eForm.date.$invalid">
           <span class="error-msg" ng-show="eForm.date.$error.required">Required!</span>

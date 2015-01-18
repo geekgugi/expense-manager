@@ -2,6 +2,15 @@
 
 angular.module('expensesManagerApp')
 .controller('MainCtrl', function ($scope, $http, ngDialog) {
+  $scope.expenses = [];
+  $scope.form = {
+    "name" : "",
+    "selectedPaymentType":"Cash",
+    "selectedFriend":"Oggy",
+    "tDate":"",
+    "selectedCurrency":"INR",
+    "amount":0
+  };
   $scope.newFriend = $scope.newFriend || '';
   $scope.awesomeThings = [];
   $scope.paymentTypes = [
@@ -37,9 +46,7 @@ angular.module('expensesManagerApp')
     $scope.friends.push(friend);
   }
 
-
-  $http.get('/api/things').success(function(awesomeThings) {
-    $scope.awesomeThings = awesomeThings;
-  });
-
+  $scope.addExpense = function () {
+    $scope.expenses.push(form);
+  }
 });

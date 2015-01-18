@@ -1,7 +1,9 @@
 .error-msg {
   color: #931616;
 }
-
+select {
+  width:100%;
+}
 #container {
   background-color:#efedde;
 }

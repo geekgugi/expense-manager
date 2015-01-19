@@ -1,9 +1,9 @@
 <script type="text/ng-template" id="friendTemplate">
 <h1>Add a friend</h1>
 
- <form ng-controller="MainCtrl" ng-submit="addFriend()">
+ <form ng-controller="MainCtrl" ng-submit="addFriend($event)">
      <input ng-model="newFriend" type="text" placeholder="Friend name"/>
-     <input type="submit" value="Add"/>
+     <input type="submit"  ng-keypress="addFriend($event)" value="Add"/>
  </form>
 </script>
 

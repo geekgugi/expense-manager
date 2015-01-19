@@ -4,6 +4,7 @@ angular.module('expensesManagerApp')
 .controller('MainCtrl', function ($scope, $http, ngDialog) {
   // Initial set of values, we are not using data source.
   $scope.value = {};
+  $scope.uid = 0;
   $scope.expenses = [];
   $scope.form = {
     "name" : "",
@@ -28,9 +29,11 @@ angular.module('expensesManagerApp')
     {"id":1, "value":"EURO"},
     {"id":2, "value":"US-DOLLAR"}
   ];
+  $scope.dialog = {};
 
+  // Open dialog box 
   $scope.openDialog = function ($event) {
-    var dialog = ngDialog.open({
+    $scope.dialog = ngDialog.open({
       template: 'friendTemplate',
       scope: $scope,
       controller: 'MainCtrl',
@@ -38,28 +41,32 @@ angular.module('expensesManagerApp')
     });
   };
 
-  $scope.deleteExpense = function (expense) {
-    console.log("Delete is clicked, to be deleted is " + expense);
-  };
-
-  $scope.editExpense = function (expense) {
-    console.log("Edit is clicked, to be edited is " + expense);
-  };
-
   // Add a friend to array, which is bind to select options
-  $scope.addFriend = function (event) {
-    if (event.which === 13) {
-      console.log("Invoked via enter button");
-    }
+  $scope.addFriend = function () {
     var friend = {
       "id" : $scope.friends [ $scope.friends.length - 1 ].id + 1,
       "name" : $scope.newFriend
     };
     $scope.friends.push(friend);
+    $scope.dialog.close();
   }
+
+  // delete an expense from the array
+  $scope.deleteExpense = function (expense) {
+    $scope.expenses.
+    console.log("Delete is clicked, to be deleted is " + expense);
+  };
+
+  // edit an expense and update back UI
+  $scope.editExpense = function (expense) {
+    console.log("Edit is clicked, to be edited is " + expense);
+  };
+
   // adds a expense to list
   $scope.addExpense = function () {
+    $scope.uid = $scope.uid + 1;
     var value = {
+      "uid" : $scope.uid,
       "name": $scope.form.name,
       "selectedPaymentType": $scope.form.selectedPaymentType.type,
       "selectedFriend":$scope.form.selectedFriend.name,

@@ -131,7 +131,7 @@
     </div>
   </div>
 
-  <div class="content" ng-repeat="expense in expenses | filter:{selectedFriend:filterValue}">
+  <div class="content" ng-repeat="expense in expenses | filter:{selectedFriend:filterValue.name}">
     <div class="row">
       <div class="col-md-2">
         {{expense.selectedPaymentType}}

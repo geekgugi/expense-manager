@@ -5,7 +5,16 @@ angular.module('expensesManagerApp')
   // Initial set of values, we are not using data source.
   $scope.value = {};
   $scope.uid = 0;
-  $scope.expenses = [];
+  
+  $scope.expenses = [{
+    uid:0,
+    name:"",
+    selectedPaymentType:"",
+    selectedFriend:"",
+    tDate:"",
+    selectedCurrency:"",
+    amount:""
+  }];
   $scope.form = {
     name :"",
     selectedPaymentType:"Cash",

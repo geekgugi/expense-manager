@@ -7,27 +7,27 @@ angular.module('expensesManagerApp')
   $scope.uid = 0;
   $scope.expenses = [];
   $scope.form = {
-    "name" : "",
-    "selectedPaymentType":"Cash",
-    "selectedFriend":"Oggy",
-    "tDate":"",
-    "selectedCurrency":"INR",
-    "amount":0
+    name :"",
+    selectedPaymentType:"Cash",
+    selectedFriend:"Oggy",
+    tDate:"",
+    selectedCurrency:"INR",
+    amount:0
   };
   $scope.newFriend = $scope.newFriend || '';
   $scope.awesomeThings = [];
   $scope.paymentTypes = [
-    {"id":0, "type":"Cash"},
-    {"id":1, "type":"Card"}
+    {id:0, type:"Cash"},
+    {id:1, type:"Card"}
   ];
   $scope.friends = [
-    {"id":0, "name":"Oggy"},
-    {"id":1, "name":"Piggy"}
+    {id:0, name:"Oggy"},
+    {id:1, name:"Piggy"}
   ];
   $scope.currencies = [
-    {"id":0, "value":"INR"},
-    {"id":1, "value":"EURO"},
-    {"id":2, "value":"US-DOLLAR"}
+    {id:0, value:"INR"},
+    {id:1, value:"EURO"},
+    {id:2, value:"US-DOLLAR"}
   ];
   $scope.dialog = {};
 
@@ -44,8 +44,8 @@ angular.module('expensesManagerApp')
   // Add a friend to array, which is bind to select options
   $scope.addFriend = function () {
     var friend = {
-      "id" : $scope.friends [ $scope.friends.length - 1 ].id + 1,
-      "name" : $scope.newFriend
+      id : $scope.friends [ $scope.friends.length - 1 ].id + 1,
+      name : $scope.newFriend
     };
     $scope.friends.push(friend);
     $scope.dialog.close();
@@ -66,14 +66,15 @@ angular.module('expensesManagerApp')
   $scope.addExpense = function () {
     $scope.uid = $scope.uid + 1;
     var value = {
-      "uid" : $scope.uid,
-      "name": $scope.form.name,
-      "selectedPaymentType": $scope.form.selectedPaymentType.type,
-      "selectedFriend":$scope.form.selectedFriend.name,
-      "selectedCurrency": $scope.form.selectedCurrency.value,
-      "date": $scope.form.tDate,
-      "amount": $scope.form.amount
+      uid:$scope.uid,
+      name:$scope.form.name,
+      selectedPaymentType:$scope.form.selectedPaymentType.type,
+      selectedFriend:$scope.form.selectedFriend.name,
+      selectedCurrency:$scope.form.selectedCurrency.value,
+      tDate:$scope.form.tDate,
+      amount:$scope.form.amount
     }
+    debugger;
     $scope.expenses.push(value);
   }
 });

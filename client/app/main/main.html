@@ -91,16 +91,16 @@
         <label> Filter by friend</label>
       </div>
       <div class="col-md-3">
-        <select ng-init="filterFriend=friends[0]" 
-          ng-model="filterFriend" ng-options="friend.name for friend in friends">
+        <select ng-model="filterValue" ng-options="friend.name for friend in friends">
+          <option value="">Select a friend</option>
         </select>
       </div>
       <div class="col-md-3">
         <label> Show amount in </label>
       </div>
       <div class="col-md-3">
-        <select ng-init="form.selectedCurrency=currencies[0]" 
-          ng-model="form.selectedCurrency" ng-options="currency.value for currency in currencies">
+        <select ng-model="showCurrency" ng-options="currency.value for currency in currencies">
+          <option value="">Display currency</option>
         </select>
       </div>
     </div>
@@ -131,7 +131,7 @@
     </div>
   </div>
 
-  <div class="content" ng-repeat="expense in expenses | filter:filterFriend">
+  <div class="content" ng-repeat="expense in expenses | filter:{selectedFriend:filterValue}">
     <div class="row">
       <div class="col-md-2">
         {{expense.selectedPaymentType}}
@@ -146,7 +146,7 @@
         {{expense.selectedCurrency}}
       </div>
       <div class="col-md-2">
-        {{expense.date}}
+        {{expense.tDate}}
       </div>
       <div class="col-md-1">
         {{expense.amount}}

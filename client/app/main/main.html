@@ -10,7 +10,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container" ng-controller="MainCtrl">
-  <form  name="eForm"  class="form" novalidate>
+  <form  name="eForm"  class="form" ng-submit="eForm.$valid && addExpense(eForm)" novalidate>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Type</label>
@@ -75,7 +75,7 @@
 
     <div class="row">
       <div class="form-group col-md-6">
-        <input type="submit" ng-click="addExpense()" value="Add an expense"
+        <input type="submit"  value="Add an expense"
         ng-disabled="eForm.expense.$dirty && eForm.expense.$invalid" />
       </div>
       <div class="form-group col-md-6">
@@ -131,9 +131,9 @@
         {{expense.amount}}
       </div>
       <div class="col-md-1">
-        <i class="fa fa-trash"></i>
+        <i class="fa fa-trash" ng-click="deleteExpense(expense)"></i>
          &nbsp;
-        <i class="fa fa-pencil"></i>
+        <i class="fa fa-pencil" ng-click="editExpense(expense)"></i>
       </div>
     </div>
   </div>

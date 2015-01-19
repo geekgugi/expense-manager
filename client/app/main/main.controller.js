@@ -2,6 +2,7 @@
 
 angular.module('expensesManagerApp')
 .controller('MainCtrl', function ($scope, $http, ngDialog) {
+  // Initial set of values, we are not using data source.
   $scope.value = {};
   $scope.expenses = [];
   $scope.form = {
@@ -28,7 +29,7 @@ angular.module('expensesManagerApp')
     {"id":2, "value":"US-DOLLAR"}
   ];
 
-  $scope.openDialog = function($event) {
+  $scope.openDialog = function ($event) {
     var dialog = ngDialog.open({
       template: 'friendTemplate',
       scope: $scope,
@@ -37,20 +38,27 @@ angular.module('expensesManagerApp')
     });
   };
 
+  $scope.deleteExpense = function (expense) {
+    console.log("Delete is clicked, to be deleted is " + expense);
+  };
+
+  $scope.editExpense = function (expense) {
+    console.log("Edit is clicked, to be edited is " + expense);
+  };
+
+  // Add a friend to array, which is bind to select options
   $scope.addFriend = function (event) {
     if (event.which === 13) {
       console.log("Invoked via enter button");
     }
     var friend = {
-      "id":$scope.friends[$scope.friends.length - 1].id + 1,
-      "name":$scope.newFriend
+      "id" : $scope.friends [ $scope.friends.length - 1 ].id + 1,
+      "name" : $scope.newFriend
     };
-    console.log(friend);
     $scope.friends.push(friend);
   }
-
+  // adds a expense to list
   $scope.addExpense = function () {
-    debugger;
     var value = {
       "name": $scope.form.name,
       "selectedPaymentType": $scope.form.selectedPaymentType.type,

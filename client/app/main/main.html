@@ -85,27 +85,54 @@
     </div>
   </form>
 
-  <div ng-repeat="expense in expenses">
-    <div class="col-md-2">
-      {{expense.selectedPaymentType}}
+  <div class="title">
+    <div class="row">
+      <div class="col-md-2">
+        <label>Payment Type </label>
+      </div>
+      <div class="col-md-1">
+        <label>Details </label>
+      </div>
+      <div class="col-md-1">
+        <label>Friend </label>
+      </div>
+      <div class="col-md-1">
+        <label>Currency</label>
+      </div>
+      <div class="col-md-2">
+        <label>Date </label>
+      </div>
+      <div class="col-md-1">
+        <label>Amount </label>
+      </div>
+      <div class="col-md-1">
+        <label>Operations</label>
+      </div>
     </div>
-    <div class="col-md-2">
-      {{expense.name}}
-    </div>
-    <div class="col-md-2">
-      {{expense.selectedFriend}}
-    </div>
-    <div class="col-md-2">
-      {{expense.selectedCurrency}}
-    </div>
-    <div class="col-md-2">
-      {{expense.date}}
-    </div>
-    <div class="col-md-2">
-      {{expense.amount}}
-    </div>
-    <div class="col-md-1">
-      <span> Delete</span>
+  </div>
+  <div class="content" ng-repeat="expense in expenses">
+    <div class="row">
+      <div class="col-md-2">
+        {{expense.selectedPaymentType}}
+      </div>
+      <div class="col-md-1">
+        {{expense.name}}
+      </div>
+      <div class="col-md-1">
+        {{expense.selectedFriend}}
+      </div>
+      <div class="col-md-1">
+        {{expense.selectedCurrency}}
+      </div>
+      <div class="col-md-2">
+        {{expense.date}}
+      </div>
+      <div class="col-md-1">
+        {{expense.amount}}
+      </div>
+      <div class="col-md-1">
+        <span> Delete</span>
+      </div>
     </div>
   </div>
 </div>

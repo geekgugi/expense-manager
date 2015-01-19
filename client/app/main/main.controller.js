@@ -2,7 +2,7 @@
 
 angular.module('expensesManagerApp')
 .controller('MainCtrl', function ($scope, $http, ngDialog) {
-  $scope.value;
+  $scope.value = {};
   $scope.expenses = [];
   $scope.form = {
     "name" : "",
@@ -38,12 +38,9 @@ angular.module('expensesManagerApp')
   };
 
   $scope.addFriend = function (event) {
-    console.log("Method invoked");
     if (event.which === 13) {
       console.log("Invoked via enter button");
     }
-
-    console.log("Adding new friend");
     var friend = {
       "id":$scope.friends[$scope.friends.length - 1].id + 1,
       "name":$scope.newFriend
@@ -52,9 +49,16 @@ angular.module('expensesManagerApp')
     $scope.friends.push(friend);
   }
 
-  $scope.addExpense = function (form) {
-    var value;
-    angular.copy(form, value);
+  $scope.addExpense = function () {
+    debugger;
+    var value = {
+      "name": $scope.form.name,
+      "selectedPaymentType": $scope.form.selectedPaymentType.type,
+      "selectedFriend":$scope.form.selectedFriend.name,
+      "selectedCurrency": $scope.form.selectedCurrency.value,
+      "date": $scope.form.tDate,
+      "amount": $scope.form.amount
+    }
     $scope.expenses.push(value);
   }
 });

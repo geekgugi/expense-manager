@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('expensesManagerApp')
-.controller('MainCtrl', function ($scope, $http, ngDialog) {
+.controller('MainCtrl', function ($scope, $http, $rootScope, ngDialog)  {
   // Initial set of values, we are not using data source.
   $scope.value = {};
   $scope.uid = 0;
@@ -38,11 +38,10 @@ angular.module('expensesManagerApp')
     {id:1, value:"EURO"},
     {id:2, value:"US-DOLLAR"}
   ];
-  $scope.dialog = {};
 
   // Open dialog box 
   $scope.openDialog = function ($event) {
-    $scope.dialog = ngDialog.open({
+    $rootScope.dialogBox = ngDialog.open({
       template: 'friendTemplate',
       scope: $scope,
       controller: 'MainCtrl',
@@ -57,13 +56,13 @@ angular.module('expensesManagerApp')
       name : $scope.newFriend
     };
     $scope.friends.push(friend);
-    $scope.dialog.close();
+    $rootScope.dialogBox.close();
   }
 
   // delete an expense from the array
   $scope.deleteExpense = function (expense) {
-    $scope.expenses.
-    console.log("Delete is clicked, to be deleted is " + expense);
+    var index = $scope.expenses.indexOf(expense)
+    $scope.expenses.splice(index, 1);
   };
 
   // edit an expense and update back UI

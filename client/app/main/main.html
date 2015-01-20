@@ -40,7 +40,7 @@
         </select>
       </div>
       <div class="form-group col-md-3"> 
-        <label>Number</label>
+        <label>Amount</label>
       </div>
       <div class="form-group col-md-3"> 
         <input type="number" name="amount" ng-model="form.amount" ng-pattern="/^(0|[1-9][0-9]*)$/"  required>
@@ -99,7 +99,7 @@
         <label> Show amount in </label>
       </div>
       <div class="col-md-3">
-        <select ng-model="showCurrency" ng-options="currency.value for currency in currencies">
+        <select ng-model="currencyValue" ng-options="currency.value for currency in currencies" ng-change="updateAmount()">
           <option value="">Display currency</option>
         </select>
       </div>
